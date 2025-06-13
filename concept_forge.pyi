@@ -1,71 +1,168 @@
 from collections.abc import Iterable, Iterator
 from typing import overload
 
+from . import primitives as primitives
+
 
 class Vec3:
+    """A 3D vector with float components x, y, and z."""
+
     def __init__(self, arg0: float, arg1: float, arg2: float, /) -> None:
-        """Constructor with x, y, z"""
+        """
+        Constructor with x, y, z
+
+        Args:
+            x (float): X-component
+            y (float): Y-component
+            z (float): Z-component
+        """
 
     @property
-    def x(self) -> float: ...
+    def x(self) -> float:
+        """X-component of the vector"""
 
     @x.setter
     def x(self, arg: float, /) -> None: ...
 
     @property
-    def y(self) -> float: ...
+    def y(self) -> float:
+        """Y-component of the vector"""
 
     @y.setter
     def y(self, arg: float, /) -> None: ...
 
     @property
-    def z(self) -> float: ...
+    def z(self) -> float:
+        """Z-component of the vector"""
 
     @z.setter
     def z(self, arg: float, /) -> None: ...
 
-    def __repr__(self) -> str: ...
+    def __repr__(self) -> str:
+        """
+        Return the string representation of the vector in the form '<Vec3 x=X, y=Y, z=Z>'
+        """
+
+    def __add__(self, arg: Vec3, /) -> Vec3:
+        """
+        Vector addition. Returns a new Vec3 which is the sum of this and another Vec3.
+        """
+
+    def __sub__(self, arg: Vec3, /) -> Vec3:
+        """
+        Vector subtraction. Returns a new Vec3 which is the difference between this and another Vec3.
+        """
+
+    @overload
+    def __mul__(self, arg: float, /) -> Vec3:
+        """Scalar multiplication. Multiplies the vector by a scalar float."""
+
+    @overload
+    def __mul__(self, arg: Vec3, /) -> Vec3:
+        """
+        Component-wise multiplication. Multiplies each corresponding component of two vectors.
+        """
+
+    def __rmul__(self, arg: float, /) -> Vec3:
+        """Scalar multiplication. Multiplies the vector by a scalar float."""
+
+    def to_tuple(self) -> "std::tuple<float, float, float>":
+        """Convert the vector to a Python tuple of the form (x, y, z)."""
+
+    def to_list(self) -> list[float]:
+        """Convert the vector to a Python list [x, y, z]."""
+
+    def to_dict(self) -> dict:
+        """Convert the vector to a Python dictionary {'x': x, 'y': y, 'z': z}."""
 
 class Entity:
+    """Base class representing a 3D object with position, rotation, and scale"""
+
     def __init__(self) -> None:
-        """Base Class for Entity with transform information"""
+        """
+        Create a new Entity with default position (0,0,0), rotation (0,0,0), and scale (1,1,1).
+        """
 
     def get_position(self) -> Vec3:
-        """Get the Position as a Vec3"""
+        """Return the current position of the Entity as a Vec3 (x, y, z)."""
 
     def get_rotation(self) -> Vec3:
-        """Get the Rotation as a Vec3 (eulerAngles)"""
+        """
+        Return the current rotation of the Entity as a Vec3 in Euler angles (in degrees).
+        """
 
     def get_scale(self) -> Vec3:
-        """Get the Scale as a Vec3"""
+        """Return the current scale of the Entity as a Vec3 (x, y, z)."""
 
     def set_position(self, position: Vec3) -> None:
-        """Set the position to a Vec3"""
+        """
+        Set the position of the Entity.
+
+        Args:
+            position (Vec3): The new position vector.
+        """
 
     def set_rotation(self, rotation: Vec3) -> None:
-        """Set the rotation to a Vec3 (eulerAngles)"""
+        """
+        Set the rotation of the Entity using Euler angles in degrees.
+
+        Args:
+            rotation (Vec3): The new rotation vector.
+        """
 
     def set_scale(self, scale: Vec3) -> None:
-        """Set the scale to a Vec3"""
+        """
+        Set the scale of the Entity.
+
+        Args:
+            scale (Vec3): The new scale vector.
+        """
 
     def translate(self, delta: Vec3) -> None:
-        """Change the position by Vec3"""
+        """
+        Translate (move) the Entity by a given delta vector.
+
+        Args:
+            delta (Vec3): The amount to move in each axis.
+        """
 
     @overload
     def rotate(self, delta: Vec3) -> None:
-        """Change the rotation by Vec3"""
+        """
+        Rotate the Entity by a delta rotation in Euler angles (degrees).
+
+        Args:
+            delta (Vec3): Rotation to apply in each axis.
+        """
 
     @overload
     def rotate(self, angle: float, axis: Vec3) -> None:
-        """Change the rotation by angle and axis"""
+        """
+        Rotate the Entity around a given axis by a specified angle (degrees).
+
+        Args:
+            angle (float): Angle in degrees.
+            axis (Vec3): Axis to rotate around.
+        """
 
     def scale(self, deltaFactor: Vec3) -> None:
-        """Change the scale by Vec3"""
+        """
+        Scale the Entity by multiplying its current scale by the given factor.
 
-class Cube(Entity):
-    def __init__(self, arg: "ShaderManagement::ShaderProgram", /) -> None: ...
+        Args:
+            deltaFactor (Vec3): Scale multiplier for each axis.
+        """
 
 class EntityVector:
+    """
+    A dynamic array (list) of shared Entity objects.
+
+    This class behaves like a standard Python list and can be used to store or access
+    multiple Entity instances, such as those managed by a scene or simulation system.
+
+    Each element is a shared_ptr to an Entity, preserving ownership semantics.
+    """
+
     @overload
     def __init__(self) -> None:
         """Default constructor"""
@@ -137,57 +234,73 @@ class EntityVector:
         """Remove first occurrence of `arg`."""
 
 class ConceptForge:
-    def __init__(self) -> None: ...
+    """
+    The main application context that manages the rendering window, input, GUI, and scene entities.
+    This class acts as the core engine loop handler and entity manager.
+    """
+
+    def __init__(self) -> None:
+        """Create a new ConceptForge instance with default settings."""
 
     def window_should_close(self) -> bool:
-        """Check if window should close"""
+        """
+        Check if the rendering window should close (e.g. user clicked the close button).
 
-    def calc_delta_time(self) -> None:
-        """Calculate Delta Time"""
+        Returns:
+            bool: True if the window should close, False otherwise.
+        """
+
+    def dt(self) -> float:
+        """
+        Return the time elapsed between the current and previous frame.
+
+        Useful for time-based animation and physics.
+
+        Returns:
+            float: Delta time in seconds.
+        """
 
     def process_input(self) -> None:
-        """Process Input"""
+        """Poll and process input events from the window (keyboard, mouse, etc)."""
 
     def render(self) -> None:
-        """Clear Screen and Render"""
+        """Clear the screen and render all registered entities."""
 
     def calc_projection(self) -> None:
-        """Calculate the Projection Matrix"""
+        """
+        Recalculate the camera projection matrix based on current parameters like field of view, aspect ratio, etc.
+        """
 
     def gui_management(self) -> None:
-        """Draw editor windows"""
+        """Render the GUI (e.g. ImGui windows for editor features)."""
 
     @property
-    def window(self) -> "WindowManagement::Window": ...
+    def window(self) -> "WindowManagement::Window":
+        """The rendering window object associated with the application."""
 
     @window.setter
     def window(self, arg: "WindowManagement::Window", /) -> None: ...
 
     @property
-    def deltaTime(self) -> float: ...
-
-    @deltaTime.setter
-    def deltaTime(self, arg: float, /) -> None: ...
-
-    @property
-    def shader_pg(self) -> "ShaderManagement::ShaderProgram": ...
+    def shader_pg(self) -> "ShaderManagement::ShaderProgram":
+        """The active ShaderProgram used for rendering entities."""
 
     @shader_pg.setter
     def shader_pg(self, arg: "ShaderManagement::ShaderProgram", /) -> None: ...
 
     @property
-    def input_man(self) -> "InputManagement::Input": ...
+    def input_man(self) -> "InputManagement::Input":
+        """The input manager handling keyboard and mouse states."""
 
     @input_man.setter
     def input_man(self, arg: "InputManagement::Input", /) -> None: ...
 
     @property
-    def entities(self) -> EntityVector: ...
+    def entities(self) -> EntityVector:
+        """A list of entities currently active in the scene (EntityVector)."""
 
     @entities.setter
     def entities(self, arg: EntityVector, /) -> None: ...
 
-    def set_selected(self, arg: int, /) -> None: ...
-
-    def add_cube(self, position: Vec3, rotation: Vec3, scale: Vec3) -> None:
-        """Adds a cube"""
+    def set_selected(self, arg: int, /) -> None:
+        """Set the currently selected entity in the editor."""
