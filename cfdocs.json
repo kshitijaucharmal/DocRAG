@@ -1,0 +1,240 @@
+[
+  {
+    "function": "ConceptForge.add_cube",
+    "description": "Adds a cube",
+    "parameters": {
+      "position": "concept_forge.Vec3",
+      "rotation": "concept_forge.Vec3",
+      "scale": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.calc_delta_time",
+    "description": "Calculate Delta Time",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.calc_projection",
+    "description": "Calculate the Projection Matrix",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.gui_management",
+    "description": "Draw editor windows",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.process_input",
+    "description": "Process Input",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.render",
+    "description": "Clear Screen and Render",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "ConceptForge.window_should_close",
+    "description": "Check if window should close",
+    "parameters": {},
+    "returns": "bool"
+  },
+  {
+    "function": "Cube.get_position",
+    "description": "Get the Position as a Vec3",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Cube.get_rotation",
+    "description": "Get the Rotation as a Vec3 (eulerAngles)",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Cube.get_scale",
+    "description": "Get the Scale as a Vec3",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Cube.rotate",
+    "description": "rotate(self, angle: float, axis: concept_forge.Vec3) -> None Overloaded function. 1. ``rotate(self, delta: concept_forge.Vec3) -> None`` Change the rotation by Vec3 2. ``rotate(self, angle: float, axis: concept_forge.Vec3) -> None`` Change the rotation by angle and axis",
+    "parameters": {
+      "delta": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Cube.scale",
+    "description": "Change the scale by Vec3",
+    "parameters": {
+      "deltaFactor": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Cube.set_position",
+    "description": "Set the position to a Vec3",
+    "parameters": {
+      "position": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Cube.set_rotation",
+    "description": "Set the rotation to a Vec3 (eulerAngles)",
+    "parameters": {
+      "rotation": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Cube.set_scale",
+    "description": "Set the scale to a Vec3",
+    "parameters": {
+      "scale": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Cube.translate",
+    "description": "Change the position by Vec3",
+    "parameters": {
+      "delta": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.get_position",
+    "description": "Get the Position as a Vec3",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Entity.get_rotation",
+    "description": "Get the Rotation as a Vec3 (eulerAngles)",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Entity.get_scale",
+    "description": "Get the Scale as a Vec3",
+    "parameters": {},
+    "returns": "concept_forge.Vec3"
+  },
+  {
+    "function": "Entity.rotate",
+    "description": "rotate(self, angle: float, axis: concept_forge.Vec3) -> None Overloaded function. 1. ``rotate(self, delta: concept_forge.Vec3) -> None`` Change the rotation by Vec3 2. ``rotate(self, angle: float, axis: concept_forge.Vec3) -> None`` Change the rotation by angle and axis",
+    "parameters": {
+      "delta": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.scale",
+    "description": "Change the scale by Vec3",
+    "parameters": {
+      "deltaFactor": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.set_position",
+    "description": "Set the position to a Vec3",
+    "parameters": {
+      "position": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.set_rotation",
+    "description": "Set the rotation to a Vec3 (eulerAngles)",
+    "parameters": {
+      "rotation": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.set_scale",
+    "description": "Set the scale to a Vec3",
+    "parameters": {
+      "scale": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "Entity.translate",
+    "description": "Change the position by Vec3",
+    "parameters": {
+      "delta": "concept_forge.Vec3"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "EntityVector.append",
+    "description": "Append `arg` to the end of the list.",
+    "parameters": {
+      "arg": "concept_forge.Entity",
+      "/": "Any"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "EntityVector.clear",
+    "description": "Remove all items from list.",
+    "parameters": {},
+    "returns": "None"
+  },
+  {
+    "function": "EntityVector.count",
+    "description": "Return number of occurrences of `arg`.",
+    "parameters": {
+      "arg": "concept_forge.Entity",
+      "/": "Any"
+    },
+    "returns": "int"
+  },
+  {
+    "function": "EntityVector.extend",
+    "description": "Extend `self` by appending elements from `arg`.",
+    "parameters": {
+      "arg": "concept_forge.EntityVector",
+      "/": "Any"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "EntityVector.insert",
+    "description": "Insert object `arg1` before index `arg0`.",
+    "parameters": {
+      "arg0": "int",
+      "arg1": "concept_forge.Entity",
+      "/": "Any"
+    },
+    "returns": "None"
+  },
+  {
+    "function": "EntityVector.pop",
+    "description": "Remove and return item at `index` (default last).",
+    "parameters": {
+      "index": "int = -1"
+    },
+    "returns": "concept_forge.Entity"
+  },
+  {
+    "function": "EntityVector.remove",
+    "description": "Remove first occurrence of `arg`.",
+    "parameters": {
+      "arg": "concept_forge.Entity",
+      "/": "Any"
+    },
+    "returns": "None"
+  }
+]
